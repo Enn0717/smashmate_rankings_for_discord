@@ -57,11 +57,11 @@ async def delete(interaction: discord.Interaction):
 
 @tree.command(description='ランキングを更新します')
 async def rank(interaction: discord.Interaction):
-    #try:
+    try:
         embed=makeRankBoard.make()
         await interaction.response.send_message(embed=embed)
-    #except Exception as e:
-        #await interaction.response.send_message(f'何かエラーが起きました:{e}')
+    except Exception as e:
+        await interaction.response.send_message(f'何かエラーが起きました:{e}')
 
 @client.event
 async def on_ready():
