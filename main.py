@@ -20,7 +20,7 @@ tree = app_commands.CommandTree(client)
 
 @tree.command(description='スマメイトIDとDiscordアカウントを紐づけします')
 async def smashmate(interaction: discord.Interaction,mate_id:int):
-    try:
+    #try:
         dbController.dbinit()
         discordname=interaction.user.name
         discord_id=interaction.user.id
@@ -29,9 +29,13 @@ async def smashmate(interaction: discord.Interaction,mate_id:int):
         dbController.dbSetSmashmate_id(discord_id,mate_id)
         rate=getFromSite.getRateMax(mate_id)
         dbController.dbUpdaterate(discord_id,rate)
-        await interaction.response.send_message(f'{discordname}さん、{smashmatename}と紐づけされました。現在の最高レートは{rate}です。')
-    except Exception as e:
-        await interaction.response.send_message(f'何かエラーが起きました:{e}')
+        if rate==0:
+            message=f'{discordname}さん、{smashmatename}と紐づけされました。最高レートは未測定です。\n試合後に"/reload"でレートが更新できます。'
+        else:
+            message=f'{discordname}さん、{smashmatename}と紐づけされました。現在の最高レートは{rate}です。'
+        await interaction.response.send_message(message)
+    #except Exception as e:
+        #await interaction.response.send_message(f'何かエラーが起きました:{e}')
         
 @tree.command(description='レートを更新します')
 async def reload(interaction: discord.Interaction):
