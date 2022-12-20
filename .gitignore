@@ -1,4 +1,4 @@
 config.ini
 *.db
 *.pyc
-config.ini
+test*
