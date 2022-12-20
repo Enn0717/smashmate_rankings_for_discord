@@ -29,6 +29,11 @@ DiscordのメンバーとメイトIDを紐づけることができるbotです�
 - Discord bot token
 - Discordサーバーの管理者権限
 ### 手順
+#### botトークンを発行します。
+このとき、botタブのMESSAGE CONTENT INTENTをオンにしてください。
+権限は"send messages"があれば十分です。
+
+#### botをダウンロードします。
 1. git clone またはダウンロードします。
 2. フォルダに入っている"config.ini"を開きます。
 3. botトークンを入力します。トークンをダブルクオーテーション（"）などで囲む必要はありません。
