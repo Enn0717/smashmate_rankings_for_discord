@@ -21,7 +21,10 @@ def make():
             tab = "\t"
         else:
             tab = "\t\t"
-        printranking=printranking+star+"\t"+ranking[1]+tab+ranking[2]+"\n"
+        if ranking[2] is None:
+            printranking=printranking+str(star)+"\t"+ranking[1]+tab+"未計測"+"\n"
+        else:
+            printranking=printranking+str(star)+"\t"+ranking[1]+tab+ranking[2]+"\n"
         count=count+1
 
     embed = discord.Embed(title="スマメイト レートランキング",description=printranking)
