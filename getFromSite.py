@@ -19,8 +19,11 @@ def getRateMax(id):
 	res = requests.get(url, verify=False)
 	soup = BeautifulSoup(res.text, "html.parser")
 	elems = soup.find_all("span", class_="rate_text")
-	elem = elems[1].contents[0]
-	rate = re.sub(r"\D","",elem)
+	try:
+		elem = elems[1].contents[0]
+		rate = re.sub(r"\D","",elem)
+	except:
+		rate = 0
 	return rate
 
 def getName(id):
