@@ -93,6 +93,15 @@ async def remove(interaction: discord.Interaction,mate_id:int):
     except Exception as e:
         await interaction.response.send_message(f'何かエラーが起きました:{e}')
 
+@tree.command(description='スマメイトとの紐づけに失敗したデータを削除します')
+async def clean(interaction: discord.Interaction):
+    try:
+        dbController.dbclean()
+        message=f'コマンドを実行しました'
+        await interaction.response.send_message(message)
+    except Exception as e:
+        await interaction.response.send_message(f'何かエラーが起きました:{e}')
+
 @client.event
 async def on_ready():
     dbController.dbinit()

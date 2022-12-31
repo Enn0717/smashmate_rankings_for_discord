@@ -80,3 +80,6 @@ def dbReadname(discord_id):
 	sql = 'select name from users where discord_id = ? '
 	data = (discord_id, )
 	return cursor.execute(sql, data).fetchall()[0][0]
+
+def dbclean():
+	cursor.execute("delete from users where smashmate_id IS NULL")
