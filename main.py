@@ -67,6 +67,32 @@ async def rank(interaction: discord.Interaction):
     except Exception as e:
         await interaction.response.send_message(f'何かエラーが起きました:{e}')
 
+@tree.command(description='自分以外のユーザーを追加します')
+async def add(interaction: discord.Interaction,mate_id:int):
+    try:
+        dbController.dbinit()
+        smashmatename=getFromSite.getName(mate_id)
+        dbController.dbMakeUser(smashmatename,"NULL")
+        rate=getFromSite.getRateMax(mate_id)
+        dbController.dbUpdaterateBysmashmate_id(mate_id,rate)
+        if rate==0:
+            message=f'{smashmatename}さんを登録しました。最高レートは未測定です。'
+        else:
+            message=f'{smashmatename}さんを登録しました。現在の最高レートは{rate}です。'
+        await interaction.response.send_message(message)
+    except Exception as e:
+        await interaction.response.send_message(f'何かエラーが起きました:{e}')
+
+@tree.command(description='addコマンドで追加されたユーザーを削除します')
+async def remove(interaction: discord.Interaction,mate_id:int):
+    try:
+        dbController.dbinit()
+        dbController.dbdeleteBySmashmate_id(mate_id)
+        message=f'登録が抹消されました。'
+        await interaction.response.send_message(message)
+    except Exception as e:
+        await interaction.response.send_message(f'何かエラーが起きました:{e}')
+
 @client.event
 async def on_ready():
     dbController.dbinit()
