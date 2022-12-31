@@ -20,7 +20,7 @@ tree = app_commands.CommandTree(client)
 
 @tree.command(description='スマメイトIDとDiscordアカウントを紐づけします')
 async def smashmate(interaction: discord.Interaction,mate_id:int):
-    #try:
+    try:
         dbController.dbinit()
         discordname=interaction.user.name
         discord_id=interaction.user.id
@@ -34,8 +34,8 @@ async def smashmate(interaction: discord.Interaction,mate_id:int):
         else:
             message=f'{discordname}さん、{smashmatename}と紐づけされました。現在の最高レートは{rate}です。'
         await interaction.response.send_message(message)
-    #except Exception as e:
-        #await interaction.response.send_message(f'何かエラーが起きました:{e}')
+    except Exception as e:
+        await interaction.response.send_message(f'何かエラーが起きました:{e}')
         
 @tree.command(description='レートを更新します')
 async def reload(interaction: discord.Interaction):
