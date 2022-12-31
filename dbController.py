@@ -24,6 +24,9 @@ def dbPrintall():
 def dbdelete(discord_id):
 	cursor.execute("delete from users where discord_id=?",(discord_id,))
 
+def dbdeleteBySmashmate_id(smashmate_id):
+	cursor.execute("delete from users where smashmate_id=?",(smashmate_id,))
+
 def dbMakeUser(name,discord_id):
 	if dbCheckUserExists(discord_id):
 		return dbCheckUserExists(discord_id)
