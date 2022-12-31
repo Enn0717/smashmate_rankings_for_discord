@@ -24,6 +24,9 @@ def dbPrintall():
 def dbdelete(discord_id):
 	cursor.execute("delete from users where discord_id=?",(discord_id,))
 
+def dbdeleteBySmashmate_id(smashmate_id):
+	cursor.execute("delete from users where smashmate_id=?",(smashmate_id,))
+
 def dbMakeUser(name,discord_id):
 	if dbCheckUserExists(discord_id):
 		return dbCheckUserExists(discord_id)
@@ -48,6 +51,11 @@ def dbCheckUserExists(discord_id):
 def dbUpdaterate(discord_id,rate):
 	sql = 'UPDATE users SET rate = ? WHERE discord_id = ?;'
 	data=(rate,discord_id)
+	cursor.execute(sql,data)
+
+def dbUpdaterateBysmashmate_id(smashmate_id,rate):
+	sql = 'UPDATE users SET rate = ? WHERE smashmate_id = ?;'
+	data=(rate,smashmate_id)
 	cursor.execute(sql,data)
 
 def dbSetSmashmate_id(discord_id,smashmate_id):
