@@ -72,7 +72,7 @@ async def add(interaction: discord.Interaction,mate_id:int):
     try:
         dbController.dbinit()
         smashmatename=getFromSite.getName(mate_id)
-        dbController.dbMakeUser(smashmatename,"NULL")
+        dbController.dbMakeUserWithSmashmate_id(smashmatename,mate_id)
         rate=getFromSite.getRateMax(mate_id)
         dbController.dbUpdaterateBysmashmate_id(mate_id,rate)
         if rate==0:

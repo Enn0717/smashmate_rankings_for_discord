@@ -35,6 +35,14 @@ def dbMakeUser(name,discord_id):
 		data=((name,discord_id))
 		cursor.execute(sql,data)
 
+def dbMakeUserWithSmashmate_id(name,smashmate_id):
+	if dbCheckUserExists(smashmate_id):
+		return dbCheckUserExists(smashmate_id)
+	else:
+		sql="""INSERT INTO users(name, smashmate_id) VALUES (?,?) """
+		data=((name,smashmate_id))
+		cursor.execute(sql,data)
+
 def dbNameUpdate(name,discord_id):
 	sql='UPDATE users SET name = ? WHERE discord_id = ?;'
 	data=(name,discord_id)
