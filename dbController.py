@@ -50,6 +50,11 @@ def dbUpdaterate(discord_id,rate):
 	data=(rate,discord_id)
 	cursor.execute(sql,data)
 
+def dbUpdaterateBysmashmate_id(smashmate_id,rate):
+	sql = 'UPDATE users SET rate = ? WHERE smashmate_id = ?;'
+	data=(rate,smashmate_id)
+	cursor.execute(sql,data)
+
 def dbSetSmashmate_id(discord_id,smashmate_id):
 	sql = 'UPDATE users SET smashmate_id = ? WHERE discord_id = ?;'
 	data=(smashmate_id,discord_id)
